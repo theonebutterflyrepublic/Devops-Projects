@@ -44,13 +44,14 @@ connect the instance using ec2 instance connect on aws
 
 ### Step 1: Install Apache2 and update the firewall
 
-Update a list of packages in package manager sudo apt update
+Update a list of packages in package manager using : sudo apt update
 ![sudo update](images/06-sudo-apt-update.png)
 
-Run apache2 package installation sudo apt install apache2
+Run apache2 package installation  using :sudo apt install apache2
 ![install apache2](images/07-install-apache.png)
 
-To verify that apache2 is running as a Service in our OS, use following command sudo systemctl status apache2
+To verify that apache2 is running as a Service in our OS, use following command:
+ sudo systemctl status apache2
 ![verify apache](images/08-check-apache.png)
 
 Open inbound connection through port 80 this is done by editing inbound rules in the security groups
@@ -66,7 +67,7 @@ To view the Apache default page, Go to http://Public-IP-Address:80 in your brows
 ### Step 2: Install MySQL
 sudo apt install mysql-server
 
-When prompted, confirm installation by typing Y, and then ENTER.
+When prompted, confirm installation by typing Y, and then hit ENTER.
 ![MySQL](images/014-mysql-install.png)
 
 When the installation is finished, log in to the MySQL console by typing:
@@ -77,7 +78,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord
 Exit the MySQL shell with:
 mysql> exit
 
-Run security script:
+Run security script using: 
 sudo mysql_secure_installation 
 This will ask if you want to configure the VALIDATE PASSWORD PLUGIN.
 Answer Y for yes, or anything else to continue without enabling
@@ -184,5 +185,5 @@ Apache virtual hosts
 AWS EC2 provisioning
 
 Author
+butterflyRepublic
 
-The One butterflyRepublic
