@@ -27,7 +27,8 @@ Client → Internet → AWS EC2 (Ubuntu)
 ### Step 0: Prerequisites
 - AWS Free Tier Account
 
-I already have an aws Account, you can create one if you do not
+I already have an aws Account,
+ you can create one if you do not havegi
 launch an EC2 instance (t2.micro)
 ![ec2 launch](images/01-ec2-instance-launch.png)
 
