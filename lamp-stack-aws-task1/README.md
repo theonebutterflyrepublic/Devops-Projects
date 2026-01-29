@@ -184,6 +184,7 @@ Web stack architecture (LAMP)
 Apache virtual hosts
 AWS EC2 provisioning
 
-Author
+Author:
+
 butterflyRepublic
 
