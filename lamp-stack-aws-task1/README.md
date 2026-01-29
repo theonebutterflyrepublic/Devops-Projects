@@ -28,8 +28,10 @@ Client → Internet → AWS EC2 (Ubuntu)
 - AWS Free Tier Account
 
 I already have an aws Account,
- you can create one if you do not havegi
-launch an EC2 instance (t2.micro)
+you can create one if you do not have
+
+
+now launch an EC2 instance (t2.micro)
 ![ec2 launch](images/01-ec2-instance-launch.png)
 
 connect the instance using ec2 instance connect on aws
