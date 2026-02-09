@@ -57,9 +57,9 @@ i ssh into my local pc (my window powershell) using
 
 ssh -i kepair ubuntu@<Public-IP>
 
+
+
 ![Images](Images/001-ssh.jpg)
-
-
 
 ## Step 1 – Install Nginx
 
@@ -79,17 +79,18 @@ Verify Nginx status:
 
 ```bash
 sudo systemctl status nginx
-![Images](Images/001-ssh.jpg)
-![Images](Images/002-install-nginx.jpg)
+
 ```
 
+![Images](Images/001-ssh.jpg)
+![Images](Images/002-install-nginx.jpg)
 Test locally:
 
 ```bash
 curl http://localhost:80
-![Images](Images/003-curl-localhost.jpg)
-```
 
+```
+![Images](Images/003-curl-localhost.jpg)
 Test from browser:
 
 ```
