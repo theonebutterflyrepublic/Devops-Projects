@@ -71,17 +71,31 @@ sudo apt upgrade
 
 2. Installing Node.js
 Let’s get the location of Node.js software from Ubuntu repositories.
+
+
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+
 ![images](images/2-curl.jpg)
+
+
 Install Node.js using
+
+
 sudo apt-get install -y nodejs
+
 ![images](images/3-install-njs.jpg)
 
 Note: The command above installs both nodejs and npm. NPM is a package manager for Node like apt for Ubuntu, it is used to install Node modules & packages and to manage dependency conflicts.
 
 Verify the node installation with the command below:
 
-node -v  and npm -v
+
+node -v
+
+and
+
+npm -v
+
 ![images](images/4-v.jpg)
 
 3. Application Code Setup
@@ -90,6 +104,7 @@ Create a new directory for your To-Do project: mkdir Todo
 check to verify that the directory you created actually worked
 
 ls
+
 Now change your current directory to the newly created one:
 
 cd Todo
@@ -115,11 +130,18 @@ Run ls to confirm that your index.js file is successfully created.
 Install the dotenv module by running the command below:
 
 npm install dotenv
+
+
 ![images](images/7-express.jpg)
+
 Open the index.js file with the command below:
 
-vim index.js Type the code below into it and save.
+
+vim index.js
+
+Type the code below into it and save.
 you can simply copy and paste the code
+
 const express = require('express');
 require('dotenv').config();
  
@@ -158,6 +180,8 @@ Now we need to open port 5000 in EC2 Security Groups.
 Open up your browser and try to access your server’s Public IP or Public DNS name followed by port 5000:
 
 http://PublicIP-or-PublicDNS:5000
+
+
 ![images](images/11-express.jpg)
 
 5.ROUTES CONFIGURATION
@@ -186,6 +210,7 @@ touch api.js
 Open the file with the command below
 
 vim api.js or nano api.js, i personally prefer using vim. Copy below the code and paste them in the file.
+
 const express = require ('express');
 const router = express.Router();
  
@@ -226,6 +251,8 @@ Inside the models folder, create a file and name it todo.js with the command bel
 touch todo.js
 
 Open the file created with vi todo.js then paste the code below in the file:
+
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
  
@@ -245,6 +272,8 @@ module.exports = Todo;
 ![images](images/14-todojs.jpg)
 
  we need to update our routes from the file api.js in ‘routes’ directory to make use of the new model. In Routes directory, open api.js with vim api.js, delete the code inside with :%d command and paste the code below into it then save and exit with :wq!
+
+
 
  const express = require ('express');
 const router = express.Router();
@@ -277,6 +306,7 @@ Todo.findOneAndDelete({"_id": req.params.id})
 })
  
 module.exports = router;
+
 ![images](images/apijs.jpg)
 
 7.MONGODB DATABASE
@@ -286,6 +316,7 @@ We need a database where we will store our data. For this we will make use of Mo
 So to make life easy, you will need to sign up for a shared clusters free account, which is ideal for our use case. Sign up here: Mongodb. Follow the sign up process, select AWS as the cloud provider, and choose a region near you.
 
 Create a cluster ( build a cluster ) and follow the steps in the images below
+
 ![images](images/16-mongodb.jpg)
 ![images](images/17-clusterbuild.jpg)
 ![images](images/18-cluster2.jpg)
@@ -316,6 +347,8 @@ touch .env
 vi .env
 
 Add the connection string to access the database in it, just as below:
+
+
 DB = 'mongodb+srv://<username>:<password>@<network-address>/<dbname>?retryWrites=true&w=majority'
 
 Make sure to update username, password, network-address and database according to your setup
@@ -330,6 +363,8 @@ This is how to get your connection string:
 Now we need to update the index.js to reflect the use of .env so that Node.js can connect to the database.
 
 Simply delete existing content in the file, and update it with the entire code below by using 
+
+
 vi index.js
 
 const express = require('express');
@@ -371,12 +406,18 @@ console.log(`Server running on port ${port}`)
 });
 
 ![images](images/29-editindex.jpg)
+
 NOTE: Using environment variables to store information is considered more secure and best practice to separate configuration and secret data from the application, instead of writing connection strings directly inside the index.js application file.
 
 Start your server using the command:
 
-node index.js You shall see a message ‘Database connected successfully'
+
+node index.js
+You shall see a message ‘Database connected successfully'
+
 ![images](images/30-nodeindexjs.jpg)
+
+
 8.TESTING OUR BACKEND CODE
 
 So far, we have built the backend of our To-Do application. This backend handles things like saving tasks, reading tasks, updating them, and deleting them from the database. We have also successfully connected our app to a database.
@@ -396,13 +437,19 @@ Postman download
 Click HERE to learn how perform CRUD operartions on Postman.
 
 Note: Make sure your set header key Content-Type as application/json
+
 ![images](images/31.0-post.jpg)
 
 create a POST request to the API http://PublicIP-or-PublicDNS:5000/api/todos. This request sends a new task to our To-Do list so the application could store it in the database.
 
 ![images](images/31-post.jpg)
 
-Create a GET request to your API on http://PublicIP-or-PublicDNS:5000/api/todos. This request retrieves all existing records from out To-do application (backend requests these records from the database and sends it us back as a response to GET request).
+Create a GET request to your API on 
+
+http://PublicIP-or-PublicDNS:5000/api/todos
+
+This request retrieves all existing records from out To-do application (backend requests these records from the database and sends it us back as a response to GET request).
+
 ![images](images/32-get.jpg)
 
  STEP 2 - FRONTEND CREATION
@@ -413,7 +460,10 @@ To start out with the frontend of the To-do app, we will use the create-react-ap
 
 In the same root directory as your backend code, which is the Todo directory, run:
 
+
 npx create-react-app client
+
+
 ![images](images/33-react.jpg)
 
 next Install Concurrently. It is used to run more than one command simultaneously from the same terminal window.
@@ -423,9 +473,13 @@ npm install concurrently --save-dev
 Install nodemon. It is used to run and monitor the server. If there is any change in the server code, nodemon will restart it automatically and load the new changes.
 
 npm install nodemon --save-dev
+
 ![images](images/34.jpg)
 
-In Todo folder open the package.json file. Change the highlighted part of the below screenshot and replace with the code below.
+In Todo folder open the package.json file. Change the highlighted part of the below 
+screenshot and replace with the code below.
+
+
 "scripts": {
 "start": "node index.js",
 "start-watch": "nodemon index.js",
@@ -439,9 +493,16 @@ cd client
 
 Open the package.json file
 
+
 vi package.json
-Add the key value pair in the package.json file "proxy": "http://localhost:5000"
-The purpose of adding the proxy configuration in number 3 above is to make it possible to access the application directly from the browser by simply calling the server url like http://localhost:5000 rather than always including the entire path like http://localhost:5000/api/todos
+
+Add the key value pair in the package.json file 
+"proxy": "http://localhost:5000"
+
+The purpose of adding the proxy configuration in number 3 above is to make it possible to access the application directly from the browser by simply calling the server url like http://localhost:5000
+ rather than always including the entire path like 
+ 
+http://localhost:5000/api/todos
 
 ![images](images/36-localproxy.jpg)
 
@@ -483,6 +544,8 @@ Open Input.js file
 nano Input.js
 
 Copy and paste the following
+
+
 import React, { Component } from 'react';
 import axios from 'axios';
  
@@ -533,7 +596,10 @@ To make use of Axios, which is a Promise based HTTP client for the browser and n
 
 Move your directory to client and paste the command below:
 
+
 npm install axios
+
+
 ![images](images/39-axios.jpg)
 
 Go to ‘components’ directory
@@ -545,6 +611,8 @@ After that open your ListTodo.js
 vi ListTodo.js
 
 in the ListTodo.js copy and paste the following code
+
+
 import React from 'react';
  
 const ListTodo = ({ todos, deleteTodo }) => {
@@ -571,9 +639,12 @@ return (
 }
  
 export default ListTodo
+
 ![images](images/40.jpg)
 
 Then in your Todo.js file, write the following code
+
+
 import React, {Component} from 'react';
 import axios from 'axios';
  
@@ -630,12 +701,17 @@ let { todos } = this.state;
  
 export default Todo;
 
+
 ![images](images/ere.jpg)
+
 We need to make little adjustment to our react code. Delete the logo and adjust our App.js to look like this. Move to the src folder cd .. Make sure that you are in the src folder and run
 
 vi App.js
 
 Copy and paste the code below into it
+
+
+
 import React from 'react';
  
 import Todo from './components/Todo';
@@ -650,6 +726,8 @@ return (
 }
  
 export default App;
+
+
 ![images](images/41-appjs.jpg)
 
 In the src directory open the App.css
@@ -657,6 +735,9 @@ In the src directory open the App.css
 vi App.css
 
 Then paste the following code into App.css:
+
+
+
 .App {
 text-align: center;
 font-size: calc(10px + 2vmin);
@@ -749,9 +830,11 @@ margin-top: 0;
 
 In the src directory open the index.css
 
-nano index.css
+vi index.css
 
 Copy and paste the code below:
+
+
 body {
 margin: 0;
 padding: 0;
@@ -769,6 +852,8 @@ code {
 font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 monospace;
 }
+
+
 ![images](images/43-indexcss.jpg)
 
 Go to the Todo directory
