@@ -39,8 +39,38 @@ This project demonstrates a **full-stack web application** deployed on an **Ubun
 sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 ```
 
-![images] (images/001-install certificate.jpg)
 
+![images](images/001-install%20certificate.jpg)
+
+NOTE: The Certificate command installs important system tools that help your server download and verify software securely and it is often run before setup scripts.
+
+
+# run this command
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+```
+
+NOTE: This command:
+
+Downloads a setup script from NodeSource, Runs it as administrator, Adds Node.js 20 repository to Ubuntu, Prepares your system to install Node.js 20. So after running it, you can install Node.js 20
+
+![images](images/002.jpg)
+
+# next install nodejs to the latest version. 
+run
+```bash
+sudo apt install -y nodejs
+```
+![images](images/003-installnjs.jpg)
+
+verify installation
+
+# run
+
+```bash
+nodejs -v
+npm -v
+```
 
 
 
