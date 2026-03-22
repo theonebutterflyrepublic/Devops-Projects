@@ -29,6 +29,12 @@ This project demonstrates a **full-stack web application** deployed on an **Ubun
  ```bash
  sudo apt update
 
- ```bash
  sudo apt upgrade
+
+
+#add certificate
+```bash
+sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
+
+
 
