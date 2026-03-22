@@ -26,7 +26,7 @@ This project demonstrates a **full-stack web application** deployed on an **Ubun
    ### Step 1 – Update system and install Node.js
  using
 
- bash
+ ```bash
  sudo apt update
 
  bash
