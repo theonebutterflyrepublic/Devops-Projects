@@ -71,6 +71,30 @@ verify installation
 nodejs -v
 npm -v
 ```
+![images](images/004-verify-njs.jpg)
+
+### Step 2: Install Mongodb
+
+NOTE: The version of MONGODB in the task 4 project is old so these are the updated version and run the command below accordingly
+
+Install Required Tools by running the command below:
+```bash
+sudo apt update
+
+sudo apt install -y curl gnupg ca-certificates
+
+# Add MongoDB Official Key (Modern Way)
+
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg
+
+# Add MongoDB Repo (Jammy = Compatible with 24.04)
+
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+```
+
+
+![images](images/005-newmongodb.jpg)
+
 
 
 
