@@ -95,6 +95,171 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gp
 
 ![images](images/005-newmongodb.jpg)
 
+# update package list
+```bash
+sudo apt update
+```
+# install mongodb
+
+```bash
+sudo apt install -y mongodb-org
+```
+![images](images/005-newmongodb.jpg)
+
+# start,enable and check mongodb status
+
+#run
+```bash
+sudo systemctl start mongod
+
+sudo systemctl enable mongod
+
+sudo systemctl status mongod
+```
+![images](images/007-enable%20mongod.jpg)
+
+# Test It (If it opens then MongoDB is ready) and press exit :
+```bash
+mongosh
+```
+
+# install npm (node package manager)
+
+```bash
+sudo apt install -y npm
+```
+![images](images/009-installmpm.jpg)
+
+# install body-parser,this package helps us process JSON files passed in requests to the server:
+
+```bash
+sudo npm install body-parser
+```
+![images](images/010-installbodyparser.jpg)
+
+# Create folder named Books
+```bash
+mkdir Books && cd Books
+```
+# in the Books directory initialize npm project
+
+
+```bash
+npm init
+```
+![images](images/011-mkdirbnooks.jpg)
+
+# create a server.js file in the Books directory
+```bash
+vi server.js
+
+# Copy and paste the web server code below into the server.js file.
+
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+require('./apps/routes')(app);
+app.set('port', 3300);
+app.listen(app.get('port'), function() {
+    console.log('Server up: http://localhost:' + app.get('port'));
+});
+```
+![images](images/012-viserverjs.jpg)
+
+
+### Step 3: Install Express and set up routes
+
+Express is a minimal and flexible Node.js web application framework that provides features for web and mobile applications. We will use Express to pass book information to and from our MongoDB database.
+
+We also will use Mongoose package which provides a straightforward, schema-based solution to model your application data. We will use Mongoose to establish a schema for the database to store data of our book register.
+
+In your Book directory run this command:
+```bash
+sudo npm install express mongoose
+```
+![images](images/013-installexpressmongoose.jpg)
+
+In Books folder, create a folder named apps
+
+mkdir apps && cd apps
+
+Create a file named routes.js
+
+nano routes.js
+
+Copy and paste the code below into routes.js
+
+var Book = require('./models/book');
+
+module.exports = function (app) {
+
+  // Get all books
+  app.get('/book', async function (req, res) {
+    try {
+      const result = await Book.find({});
+      res.json(result);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // Add new book
+  app.post('/book', async function (req, res) {
+    try {
+
+      const book = new Book({
+        name: req.body.name,
+        isbn: req.body.isbn,
+        author: req.body.author,
+        pages: req.body.pages
+      });
+
+      const result = await book.save();
+
+      res.json({
+        message: "Successfully added book",
+        book: result
+      });
+
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // Delete book
+  app.delete('/book/:isbn', async function (req, res) {
+    try {
+
+      const result = await Book.findOneAndDelete({
+        isbn: req.params.isbn
+      });
+
+      if (!result) {
+        return res.status(404).json({
+          message: "Book not found"
+        });
+      }
+
+      res.json({
+        message: "Successfully deleted the book",
+        book: result
+      });
+
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // Catch all routes
+  app.all(/.*/, function (req, res) {
+    res.status(404).json({ message: "Route not found" });
+  });
+
+};
+
+
 
 
 
