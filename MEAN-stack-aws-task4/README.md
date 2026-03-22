@@ -39,5 +39,9 @@ This project demonstrates a **full-stack web application** deployed on an **Ubun
 sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 ```
 
+![images] (images/001-install certificate.jpg)
+
+
+
 
 
