@@ -181,16 +181,18 @@ sudo npm install express mongoose
 ```
 ![images](images/013-installexpressmongoose.jpg)
 
-In Books folder, create a folder named apps
+# In Books folder, create a folder named apps
 
+```bash
 mkdir apps && cd apps
-
-Create a file named routes.js
-
+```
+# Create a file named routes.js
+```bash
 nano routes.js
+```
+# Copy and paste the code below into routes.js
 
-Copy and paste the code below into routes.js
-
+```bash
 var Book = require('./models/book');
 
 module.exports = function (app) {
@@ -258,7 +260,7 @@ module.exports = function (app) {
   });
 
 };
-
+```
 
 
 
