@@ -262,6 +262,32 @@ module.exports = function (app) {
 };
 ```
 
+![images](images/014-routejs.jpg)
+
+# In the apps folder, create a folder named models
+```bash
+mkdir models && cd models
+```
+# Create a file named book.js
+```bash
+nano book.js
+```
+# Copy and paste the code below into book.js
+```bsh
+var mongoose = require('mongoose');
+var dbHost = 'mongodb://localhost:27017/test';
+mongoose.connect(dbHost);
+mongoose.connection;
+mongoose.set('debug', true);
+var bookSchema = mongoose.Schema( {
+  name: String,
+  isbn: {type: String, index: true},
+  author: String,
+  pages: Number
+});
+var Book = mongoose.model('Book', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);
+```
 
 
 
