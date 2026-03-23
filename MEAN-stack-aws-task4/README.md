@@ -437,6 +437,8 @@ CHALLENGE ENCOUNTERTED DURING THIS TASK
 
 MongoDB Installation Issue and Resolution
 
+![images](images/my%20first%20error%20and%20solution.jpg)
+
 While setting up MongoDB on the Ubuntu server, I encountered an installation problem after successfully adding the MongoDB repository.
 
 Problem encountered
@@ -464,4 +466,3 @@ This caused a mismatch between the operating system version and the MongoDB repo
 
 so i had to use the correct package name.
 
-![images](images/my%20first%20error%20and%20solution.jpg)
