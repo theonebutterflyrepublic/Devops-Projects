@@ -289,6 +289,11 @@ var Book = mongoose.model('Book', bookSchema);
 module.exports = mongoose.model('Book', bookSchema);
 ```
 
+![images](images/015-models&book.jpg)
+
+
+
+
 
 
 
