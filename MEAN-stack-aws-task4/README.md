@@ -408,3 +408,60 @@ nano index.html
   </body>
 </html>
 ```
+
+![images](images/017-index.jpg)
+
+# Change the directory back up to Books
+```bsh
+cd ..
+```
+# Start the server by running this command:
+```bsh
+node server.js
+```
+
+![images](images/018-startserver.jpg)
+
+Note: You need to open TCP port 3300 in your AWS Web Console for your EC2 Instance to view your Book register web application from the internet with your broswer using your Public IP.
+
+![images](images/018-startserver.jpg)
+
+open your Public IP on your browser via port 3300 to view your book register
+
+![images](images/020.jpg)
+
+
+
+
+CHALLENGE ENCOUNTERTED DURING THIS TASK
+
+MongoDB Installation Issue and Resolution
+
+While setting up MongoDB on the Ubuntu server, I encountered an installation problem after successfully adding the MongoDB repository.
+
+Problem encountered
+
+After adding the MongoDB repository, I ran the command below:
+```bash
+sudo apt install -y mongodb
+```
+```bash
+Package mongodb is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+
+E: Package 'mongodb' has no installation candidate
+```
+
+Why the error happened
+
+This happened for two reasons:
+
+The package name mongodb is not the correct package for the official MongoDB repository.
+The correct package to install from MongoDB’s official repository is mongodb-org.
+The repository that was added was for Ubuntu jammy (22.04), while my server was running Ubuntu noble (24.04).
+This caused a mismatch between the operating system version and the MongoDB repository source.
+
+so i had to use the correct package name.
+
+![images](images/my%20first%20error%20and%20solution.jpg)
