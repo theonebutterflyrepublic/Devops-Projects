@@ -131,7 +131,7 @@ It’s not needed in production
 
 In the MySQL server create a user and a database named first_db and a user named first_user, but you can replace these names with different values.
 
-# note i used tobr for mine.
+# note i used tobr for mine as my user and database.
 
 First, connect to the MySQL console using the root account:
 ```bash
@@ -159,3 +159,40 @@ Give this user permission over the example_database database:
 GRANT ALL ON example_database.* TO 'example_user'@'%';
 ```
 ![images](images/006-grantpermission.jpg)
+
+Note: This will give the example_user user full privileges over the example_database database, while preventing this user from creating or modifying other databases on your server.
+
+Exit the MySQL shell with: exit
+
+Test if the new user has the proper permissions by logging in to the MySQL console again, this time using the custom user credentials:
+
+```bash
+mysql -u example_user -p
+```
+![images](images/007-login.jpg)
+
+The -p flag in this command, which will prompt us for the password used when creating the example_user user.
+
+After logging in to the MySQL console, confirm that you have access to the example_database database:
+ mysql> 
+ ```bash
+ SHOW DATABASES;
+ ```
+This will give you the following output:
+
+![images](images/009-showdb.jpg)
+
+Exit MySQL and restart the mySQL service using
+
+```bash
+sudo systemctl restart mysql 
+```
+```bash
+sudo systemctl enable mysql
+```
+```bash
+sudo systemctl status mysql.service
+```
+
+![images](images/010-res-sql.jpg)
+
