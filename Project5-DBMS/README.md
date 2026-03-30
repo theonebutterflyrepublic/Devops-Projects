@@ -194,5 +194,51 @@ sudo systemctl enable mysql
 sudo systemctl status mysql.service
 ```
 
-![images](images/010-res-sql.jpg)
+![images](images/016-ersdb.jpg)
+
+You need to configure MySQL server to allow connections from remote hosts.
+
+```bash
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+![images](images/011-bindaddress.jpg)
+
+By default, both of your EC2 virtual servers are located in the same local virtual network, so they can communicate to each other using local IP addresses. Use mysql server's local IP address to connect from mysql client. MySQL server uses TCP port 3306 by default, so you will have to open it by creating a new entry in ‘Inbound rules’ in ‘mysql server’ Security Groups.
+
+![images](images/012-edit-inbound-rule.jpg)
+
+Mysql client private ip address is used above instead of 0.0.0.0 for extra Security
+Save the above configurations.
+
+## Step 2 SET UP MYSQL CLIENT
+
+ssh into mysql-client instance
+
+On mysql client Linux Server install MySQL client software.
+```bash
+sudo apt update && sudo apt ugrade
+```
+install the mysql-client package:
+```bash
+sudo apt install mysql-client -y
+```
+![images](images/013-sqlc-upgrade.jpg)
+
+
+From mysql client instance connect remotely to mysql server Database using:
+```bash
+sudo mysql -u example_user -h <mysqlserver private ip> -p
+```
+![images](images/014.jpg)
+
+Type this in and the database should be visible: 
+```bash
+show databases;
+```
+![images](images/015-showdb.jpg)
+
+# note you can find my tobr_database here
+
+![images](images/015.jpg)
 
