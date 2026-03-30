@@ -1,7 +1,7 @@
 # Project 5: Client-Server Architecture Using MySQL Management Database (DBMS) 
 
 
-## 📌 Overview
+##  Overview
 This project demonstrates a **Client-Server architecture** using MySQL on two Ubuntu-based AWS EC2 instances:
 
 Client-Server refers to an architecture in which two or more computers are connected together over a network to send and receive requests between one another. In their communication, each machine has its own role: the machine sending requests is usually referred as "Client" and the machine responding (serving) is called "Server". A simple diagram of Web Client-Server architecture is presented below:
@@ -36,17 +36,88 @@ Server B name - mysql-client
 
 ![images](images/000-launchinstance.jpg)
 
-
+On (mysql-server) Linux Server install MySQL Server software.
 ```bash
 sudo apt update
-sudo apt install mysql-server -y
 ```
+```bsh
+sudo apt install mysql-server
+```
+![images](images/001-installsqlserver.jpg)
 
+Ensure that the server is running using the systemctl command:
+```bsh
+sudo systemctl start mysql.service
+sudo systemctl status mysql.service
+```
+![images](images/002-startsql.jpg)
+
+## Setting it up
+
+login to mysql
+```bsh
+sudo mysql
+```
+For the password I'll be using 'Password'
+```bsh
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord';
+```
+![images](images/003-setuppassword.jpg)
+
+Run a MySQL secure installation
+```bash
 sudo mysql_secure_installation
-Follow prompts
-Set a strong root password
-Remove test databases if prompted
-👤 Step 3: Create Database and User
+```
+## Why we run mysql_secure_installation
+It is used to secure your MySQL server after installation.
+By default, MySQL is not fully secure, so this script helps fix that.
 
-Login to MySQL server:
-sudo mysql -p
+## What it actually does
+
+When you run it, it asks you a few questions and applies security settings:
+
+1 Set root password
+ Protects your MySQL admin account
+
+Without this anyone with access to the server can control your database
+
+2 Remove anonymous users
+Deletes users with no username
+This is important because
+
+Anonymous users can log in without authentication
+
+3 Disable remote root login
+Prevents root from logging in remotely
+
+Why:
+
+Root has full control → big security risk if exposed
+Best practice: only allow root locally 
+
+4 Remove test database
+
+Deletes default test DB
+
+Why:
+
+Anyone can access it by default
+It’s not needed in production
+
+
+# A Simple explanation
+
+# Think of it like:
+
+# Locking your house after moving in
+
+# Before:
+
+# Doors open
+# Anyone can enter
+
+# After running it:
+
+# Doors locked
+# Only authorized users allowed
+
