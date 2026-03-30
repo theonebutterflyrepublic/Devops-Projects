@@ -113,19 +113,19 @@ It’s not needed in production
 
 # A Simple explanation
 
-# Think of it like:
+Think of it like:
 
-# Locking your house after moving in
+Locking your house after moving in
 
-# Before:
+Before:
 
-# Doors open
-# Anyone can enter
+Doors open
+Anyone can enter
 
-# After running it:
+After running it:
 
-# Doors locked
-# Only authorized users allowed
+Doors locked
+Only authorized users allowed
 
 
 
